@@ -1,4 +1,5 @@
 # Florence Nightingale
+## by Edward Gunning
 
 Celebration of Florence Nightingale's Bicentenary by recreating some of her work with ggplot.
 
