@@ -67,6 +67,6 @@ mort %>% ggplot(aes(x=fct_rev(age_group)))+
        caption = "N<span style='font-size:10pt'>OTE</span>—The Mortality of the English Male Population at the above ages is taken from English Life Table (1949-1953)")
 
 
-ggsave("Lines Diagram B.png", device = "png", dpi=320, width=12.8, height =7.68)
+ggsave("LinesDiagramB.png", device = "png", dpi=320, width=12.8, height =7.68)
 
 
