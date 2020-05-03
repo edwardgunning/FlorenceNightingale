@@ -7,7 +7,6 @@ I have uploaded a scanned (color) pdf containing some of the original diagrams a
 
 
 ## 1 Nightingale's Coxcomb/ Rose Diagram
-Perhaps Nightingale's most famous known as the _Coxcomb_, the _Polar Area Chart_ or the _Rose Diagram_. See [Understanding Uncertainty](https://understandinguncertainty.org/node/214) for a good description. Code is in `Rose Diagram.R`.
+Perhaps Nightingale's most famous known as the _Coxcomb_, the _Polar Area Chart_ or the _Rose Diagram_. See [Understanding Uncertainty](https://understandinguncertainty.org/node/214) for a good description. All code is [here](Rose Diagram Code.R).
 
 ![](causesofmortality.png)
-
