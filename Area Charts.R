@@ -58,7 +58,7 @@ mortplot_df %>%
   geom_line(aes(x=age, y=total), data=.%>%filter(status=="dead"))+
   theme(legend.position = "none", strip.placement = "outside",
         strip.background = element_blank(),
-        plot.title = element_markdown(, hjust = 0.5),
+        plot.title = element_markdown(hjust = 0.5),
         axis.title.x = element_blank(),
         panel.grid.minor = element_blank(),
         panel.grid.major = element_line(color='black'),
