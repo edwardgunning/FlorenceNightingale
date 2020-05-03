@@ -15,7 +15,7 @@ Perhaps Nightingale's most famous known as the _Coxcomb_, the _Polar Area Chart_
 
 Ive transcribed the data from pg. 12 (22nd page of the [pdf](https://archive.org/details/mortalityofbriti00lond/page/n41/mode/2up)) and uploaded it [here](EnglishMortalitydata.xlsx), to recreate the diagram on the 35th page of the [pdf](https://archive.org/details/mortalityofbriti00lond/page/n41/mode/2up). The code to create the line chart is in [this script](Lines Diagram B.R).
 
-![](Lines Diagram B.png)
+![](LinesDiagramB.png)
 
 ## 3 Nightingale's Area Diagram
 
