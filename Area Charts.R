@@ -3,9 +3,8 @@ library(readxl) # CRAN v1.3.1
 library(tidyverse) # CRAN v1.3.0
 library(reshape2) # CRAN v1.4.4
 library(ggtext) # [github::wilkelab/ggtext] v0.1.0
-library(extrafont)
-library(scales)
-library(grid)
+library(extrafont) # CRAN v0.17 
+library(scales) # CRAN v1.1.0 
 ### I've transcribed english mortality data from pg. 22 of the pdf
 mort<- read_excel("EnglishMortalityData.xlsx")
 colnames(mort) <- c("age", "n_soldier", "n_english", "d_soldier", "d_english")
@@ -85,4 +84,6 @@ mortplot_df %>%
   coord_cartesian(clip = "off")
 
 ggsave("AreaChart.png", device = "png", dpi=320, width = 7.49, height = 9.01)
+
+
 
