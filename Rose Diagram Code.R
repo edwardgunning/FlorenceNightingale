@@ -59,9 +59,6 @@ Nighting_Plot1 <- melt(Nighting_df,measure.vars=c("bar1", "bar2", "bar3"), varia
   annotate(geom = "text", x=6.2, y=9.7, label="BULGARIA", size=2.2, col="black", angle=90, fontface="italic")
 
 #### Right hand plot done :-)
-without_title <- cowplot::plot_grid(left_hand, Nighting_Plot1, rel_widths = c(0.4,0.6))
-cowplot::plot_grid(title_words, without_title, rel_heights=c(0.1, 1), ncol=1)
-
 
 ##### now do left hand plot
 ### gonna do same thing with bars.
