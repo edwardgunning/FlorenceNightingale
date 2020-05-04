@@ -57,18 +57,18 @@ mortplot_df %>%
   scale_y_continuous(breaks = seq(0,10000, by=1000), labels=seq(10000, 0, by=-1000), expand = c(0,0))+
   geom_area(aes(x=age, y=total, fill=status), alpha=0.25)+
   theme_bw()+
-  labs(title="(E). <br><span style='font-face:bold'><span style='font-family:Arial'><span style='font-size:9pt'> DIAGRAM</span></span> </span><br><span style='font-size:10pt'> *Showing the Numbers Living and Dead at the several Ages from 20-40*",
+  labs(title="(E). <br><span style='font-face:bold'><span style='font-family:Arial'><span style='font-size:11pt'> **DIAGRAM**</span></span> </span><br><span style='font-size:12pt'> *Showing the Numbers Living and Dead at the several Ages from 20-40*",
        caption = "Thus, the Diagram (1) shows that out of 10,000 soldiers at the age of 20, about \n7000 are living and 3000 are dead at the Age 40.",
-       y="NUMBERS LIVING AND DEAD                                                    NUMBERS LIVING AND DEAD")+
+       y="NUMBERS LIVING AND DEAD                                                                                                                   NUMBERS LIVING AND DEAD")+
   geom_line(aes(x=age, y=total), data=.%>%filter(status=="dead"))+
   theme(legend.position = "none", strip.placement = "outside",
         strip.background = element_blank(),
-        plot.title = element_markdown(hjust = 0.5, family="serif"),
+        plot.title = element_markdown(hjust = 0.5, family="serif", size=14),
         axis.title.x = element_blank(),
         axis.text.x = element_text(face="italic", family="serif"),
         axis.text.y = element_text(face="italic", family="serif", size=12),
         plot.caption.position = "plot",
-        plot.caption = element_text(family = "serif", face="italic", hjust=0, size=11, margin=margin(t=20)),
+        plot.caption = element_text(family = "serif", face="italic", hjust=0, size=15, margin=margin(t=20)),
         panel.grid.minor = element_blank(),
         axis.ticks = element_blank(),
         #panel.background = element_rect(fill="white"),
@@ -78,12 +78,12 @@ mortplot_df %>%
         strip.text = element_text(vjust = 3,family="Arial", face="bold", size=8),
         plot.margin = margin(r=10, l=10, t=2, b=2))+
   annotate(geom="text", x=28.75, y=6300, label="LIVING", fontface=2, size=2.5)+
-  geom_text(aes(x=x,y=y,label=label), data=dead_text, size=2.5, fontface=2)+
+  geom_text(aes(x=x,y=y,label=label), data=dead_text, size=2.8, fontface=2)+
   annotation_custom(textGrob("Age.", gp = gpar(col = "black", cex=0.8, fontface=3)), 
-                    xmin=30, xmax=30,ymin=11050, ymax=11050)+
+                    xmin=30, xmax=30,ymin=10650, ymax=10650)+
   coord_cartesian(clip = "off")
 
-ggsave("AreaChart.png", device = "png", dpi=320, width = 7.49, height = 9.01)
+ggsave("AreaChart.png", device = "png", dpi=320, width = 7.49, height = 10)
 
 
 
