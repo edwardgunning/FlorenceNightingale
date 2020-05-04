@@ -26,4 +26,5 @@ Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode
 
 ![](AreaChart.png)
 
+Didn't even have to change the default fill scale. 
 
