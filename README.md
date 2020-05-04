@@ -22,7 +22,7 @@ The code to create the line chart is in [this script](https://github.com/edwardg
 
 ## 3 Nightingale's Area Diagrams
 
-Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode/2up). Certainly favorite to recreate. Really easy data manipulation from the [life table](https://github.com/edwardgunning/FlorenceNightingale/blob/master/EnglishMortalityData.xlsx) to create this:
+Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode/2up). Certainly my favorite to recreate. [Code](https://github.com/edwardgunning/FlorenceNightingale/blob/master/Area%20Charts.R) contains a really easy data manipulation from the [life table](https://github.com/edwardgunning/FlorenceNightingale/blob/master/EnglishMortalityData.xlsx) and a `facet_wrap` to create the plot:
 
 ![](AreaChart.png)
 
