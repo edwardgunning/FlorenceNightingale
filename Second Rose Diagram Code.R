@@ -88,7 +88,7 @@ Nighting_Plot2 <- Nighting_df2 %>%
 
 text_words <- ggplot(data.frame(x = 1:2, y = 1:10)) +
   labs(x = NULL, y = NULL,
-       title = "The dotted circle represents what the Mortality would have been had \n   the army been as healthy as Manchester - 12.4 per 100 per annum. \nThe area of each Monthly division exhibits the relative mortality in the army \n   during the month. \nEach wedge admits of comparison, area for Area with every other wedge, and \n   with the Manchester Circle, and each wedge shows the Mortality per 1000 per \n   Annum for the Month. \n The dark Area outside the Manchester Circle exhibits the excess of Mortality in the \n   Army for the same ages over that of one of the most unhealthy Towns in England. \nThe figures show the Mortality per 1000 per annum.
+       title = "The dotted circle represents what the Mortality would have been had \n   the army been as healthy as Manchester - 12.4 per 1000 per annum. \nThe area of each Monthly division exhibits the relative mortality in the army \n   during the month. \nEach wedge admits of comparison, area for Area with every other wedge, and \n   with the Manchester Circle, and each wedge shows the Mortality per 1000 per \n   Annum for the Month. \n The dark Area outside the Manchester Circle exhibits the excess of Mortality in the \n   Army for the same ages over that of one of the most unhealthy Towns in England. \nThe figures show the Mortality per 1000 per annum.
        ") +
   theme_void()+
   theme(line = element_blank(),
@@ -118,11 +118,12 @@ title_words <- ggplot(data.frame(x = 1:2, y = 1:10)) +
         plot.title.position = "plot")
 
 
-p <-cowplot::plot_grid(title_words, without_title, rel_heights=c(0.1, 1), ncol=1)
+(p <-cowplot::plot_grid(title_words, without_title, rel_heights=c(0.1, 1), ncol=1))
 
 ggsave(filename = "rosediagram2.png", device = "png", width = 13, height = 7.2)
 
 
+#### YSS Submission added details
 other_title <- ggplot(data.frame(x = 1:2, y = 1:10)) +
   labs(x = NULL, y = NULL,
        title = "<span style='color:maroon'>YSS</span> #FLOVIZ  challenge")+
@@ -146,6 +147,6 @@ ggdraw()+
   draw_plot_label("{HistData}, CRAN, \ngunning_edward",x = 0.99, hjust = 1, family="Trattatello", color="maroon")+
   #draw_image("Nightingale_Badge.jpg", x = 1, hjust = 1, width = 0.13, height = 1.8)+
   draw_line(x=c(0.125,0.35,0.63), y=c(0.52,0.35,0.44), color="black", size=0.8, linetype="dotted")
-ggsave(filename = "rosediagram2.png", device = "png", width = 13, height = 7.2)
+ggsave(filename = "YSSrosediagram2.png", device = "png", width = 13, height = 7.2)
 
 
