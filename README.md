@@ -21,7 +21,7 @@ And code for the second is [here](https://github.com/edwardgunning/FlorenceNight
 ## 2 Nightingale's Lines Diagram
 
 An aim to create to recreate [this classic bar chart](https://archive.org/details/mortalityofbriti00lond/page/n33/mode/2up).
-I've transcribed the data from  [here](https://archive.org/details/mortalityofbriti00lond/page/12/mode/2up) and uploaded it [here](https://github.com/edwardgunning/FlorenceNightingale/blob/master/EnglishMortalityData.xlsx).
+I've transcribed the data from  [Mortality of the British Army, (1958)](https://archive.org/details/mortalityofbriti00lond/page/12/mode/2up) and uploaded it [here](https://github.com/edwardgunning/FlorenceNightingale/blob/master/EnglishMortalityData.xlsx).
 
 The code to create the line chart is in [this script](https://github.com/edwardgunning/FlorenceNightingale/blob/master/Lines%20Diagram%20B.R).
 
@@ -35,3 +35,14 @@ Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode
 
 This one was so straightforward that I didn't even have to change the default ggplot colors!
 
+
+
+## Some articles
+
+* https://www.atlasobscura.com/articles/florence-nightingale-infographic
+
+* http://www.florence-nightingale-avenging-angel.co.uk/GraphicsPaper/Graphics.htm
+
+* https://rss.onlinelibrary.wiley.com/doi/10.1111/1740-9713.01374
+
+* https://rss.onlinelibrary.wiley.com/doi/10.1111/1740-9713.01376
