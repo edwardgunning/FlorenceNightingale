@@ -36,7 +36,7 @@ Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode
 This one was so straightforward that I didn't even have to change the default ggplot colors!
 
 
-## 4 Nightingale's Area Diagrams 2
+## 4 Nightingale's Area Diagrams (2)
 
 Sir David Spiegelhalter referred to these as multistate diagrams and likened them to what is used today. they were a joy to recreate and even included some _"modelling"_ of the invalided cases (see left-hand side).
 
