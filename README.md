@@ -42,7 +42,7 @@ Sir David Spiegelhalter referred to these as multistate diagrams and likened the
 
 [See originals](https://archive.org/details/mortalityofbriti00lond/page/n41/mode/2up)
 
-![](multistate_chart.png)
+![](mulistate_chart.png)
 
 ## Some articles
 
