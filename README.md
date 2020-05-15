@@ -27,7 +27,7 @@ The code to create the line chart is in [this script](https://github.com/edwardg
 
 ![](LinesDiagramB.png)
 
-## 3 Nightingale's Area Diagrams
+## 3 Nightingale's Area Diagrams (1)
 
 Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode/2up). Certainly my favorite to recreate. [Code](https://github.com/edwardgunning/FlorenceNightingale/blob/master/Area%20Charts.R) contains a really easy data manipulation from the [life table](https://github.com/edwardgunning/FlorenceNightingale/blob/master/EnglishMortalityData.xlsx) and a `facet_wrap` to create the plot:
 
@@ -36,6 +36,13 @@ Original [here](https://archive.org/details/mortalityofbriti00lond/page/n39/mode
 This one was so straightforward that I didn't even have to change the default ggplot colors!
 
 
+## 4 Nightingale's Area Diagrams 2
+
+Sir David Spiegelhalter referred to these as multistate diagrams and likened them to what is used today. they were a joy to recreate and even included some _"modelling"_ of the invalided cases (see left-hand side).
+
+[See originals](https://archive.org/details/mortalityofbriti00lond/page/n41/mode/2up)
+
+![](multistate_chart.png)
 
 ## Some articles
 
