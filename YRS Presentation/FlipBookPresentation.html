@@ -45,7 +45,7 @@ layout: true
 
 - CRT in foundations of Data Science.
 
-- Interested in #DataViz &amp; #rstats.
+- Interested in &lt;b&gt;#DataViz&lt;/b&gt; &amp; &lt;b&gt;#rstats.&lt;/b&gt;
 ]
 ]
 ---
@@ -100,7 +100,7 @@ count: false
 ]
 --
 .midtext[
-- Used statistical diagrams to communicate messages for sanitary reform during and after the Crimean war.]
+- Used &lt;b&gt;statistical diagrams&lt;/b&gt; to communicate messages for sanitary reform during and after the Crimean war.]
 --
 &lt;br&gt;
 .midtext[
@@ -148,7 +148,7 @@ _source: [A Contribution to the Sanitary History of the British Army (1859)](htt
 ]
 --
 .midtext[
-- Based on a deep underlying grammar [(Wickham, 2016)](https://ggplot2-book.org/introduction.html)
+- Based on a &lt;b&gt;deep underlying grammar&lt;/b&gt; [(Wickham, 2016)](https://ggplot2-book.org/introduction.html)
 ]
 --
 .midtext[
@@ -163,8 +163,30 @@ _source: [A Contribution to the Sanitary History of the British Army (1859)](htt
 _source: [The Grammar of Graphics (Wilkinson, 2005)](https://www.springer.com/gp/book/9780387245447)_
 ]
 ---
+
+class: tidy-slide
+.center[
+# ... and the tidyverse
+]
+.bigtext[
+- An &lt;b&gt;opinionated&lt;/b&gt; collection of R packages designed for &lt;b&gt;data science&lt;/b&gt;.
+]
+  
+--
+
+.bigtext[
+- All share an underlying &lt;b&gt;_design philosophy_&lt;/b&gt;, &lt;b&gt;_grammar_&lt;/b&gt;, and &lt;b&gt;_data structures_&lt;/b&gt;.
+]
+
+--
+
+.bigtext[
+- [dplyr](https://dplyr.tidyverse.org) is a &lt;b&gt;_grammar of data manipulation_&lt;/b&gt;:
+ - &lt;b&gt;`mutate()`&lt;/b&gt; adds new variables that are functions of existing variables.
+ - &lt;b&gt;`filter()`&lt;/b&gt; picks cases based on their values.
+ ]
+---
 layout: true 
-class: hide-logo
 .center[
 # 1. The Polar Area Diagram]
 ---
@@ -1099,9 +1121,75 @@ count: false
 
 ---
 
+
+.center[
+# Reproducibility Receipt
+]
+
+```r
+Sys.time()
+```
+
+```
+[1] "2020-05-21 22:32:55 IST"
+```
+
+```r
+git2r::repository()
+```
+
+```
+Local:    master /Users/edwardgunning/Desktop/FlorenceNightingale
+Remote:   master @ origin (https://github.com/edwardgunning/FlorenceNightingale)
+Head:     [c5425dd] 2020-05-21: slides pres
+```
+
+```r
+sessionInfo()
+```
+
+```
+R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_IE.UTF-8/en_IE.UTF-8/en_IE.UTF-8/C/en_IE.UTF-8/en_IE.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] scales_1.1.0       cowplot_1.0.0      ggtext_0.1.0       lubridate_1.7.8   
+ [5] HistData_0.8-6     forcats_0.5.0      stringr_1.4.0      dplyr_0.8.5       
+ [9] purrr_0.3.4        readr_1.3.1        tidyr_1.0.2        tibble_3.0.1      
+[13] ggplot2_3.3.0.9000 tidyverse_1.3.0    flipbookr_0.1.0   
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.4.6     lattice_0.20-41  png_0.1-7        assertthat_0.2.1
+ [5] digest_0.6.25    R6_2.4.1         cellranger_1.1.0 backports_1.1.6 
+ [9] reprex_0.3.0     evaluate_0.14    httr_1.4.1       xaringan_0.16.1 
+[13] pillar_1.4.3     rlang_0.4.5      readxl_1.3.1     rstudioapi_0.11 
+[17] rmarkdown_2.1    labeling_0.3     munsell_0.5.0    gridtext_0.1.1  
+[21] broom_0.5.6      compiler_4.0.0   modelr_0.1.6     xfun_0.13       
+[25] pkgconfig_2.0.3  htmltools_0.4.0  tidyselect_1.0.0 fansi_0.4.1     
+[29] crayon_1.3.4     dbplyr_1.4.3     withr_2.2.0      grid_4.0.0      
+[33] nlme_3.1-147     jsonlite_1.6.1   gtable_0.3.0     lifecycle_0.2.0 
+[37] DBI_1.1.0        git2r_0.26.1     magrittr_1.5     cli_2.0.2       
+[41] stringi_1.4.6    farver_2.0.3     fs_1.4.1         xml2_1.3.1      
+[45] ellipsis_0.3.0   generics_0.0.2   vctrs_0.2.4      tools_4.0.0     
+[49] glue_1.4.0       markdown_1.1     hms_0.5.3        yaml_2.2.1      
+[53] colorspace_1.4-1 rvest_0.3.5      knitr_1.28       haven_2.2.0     
+```
+
 &lt;style type="text/css"&gt;
 .remark-code{line-height: 1.5; font-size: 80%}
 &lt;/style&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

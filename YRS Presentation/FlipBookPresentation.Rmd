@@ -55,7 +55,7 @@ layout: true
 
 - CRT in foundations of Data Science.
 
-- Interested in #DataViz & #rstats.
+- Interested in <b>#DataViz</b> & <b>#rstats.</b>
 ]
 ]
 ---
@@ -110,7 +110,7 @@ count: false
 ]
 --
 .midtext[
-- Used statistical diagrams to communicate messages for sanitary reform during and after the Crimean war.]
+- Used <b>statistical diagrams</b> to communicate messages for sanitary reform during and after the Crimean war.]
 --
 <br>
 .midtext[
@@ -162,7 +162,7 @@ knitr::include_graphics(path = "Tidyverse Logo.png")
 ]
 --
 .midtext[
-- Based on a deep underlying grammar [(Wickham, 2016)](https://ggplot2-book.org/introduction.html)
+- Based on a <b>deep underlying grammar</b> [(Wickham, 2016)](https://ggplot2-book.org/introduction.html)
 ]
 --
 .midtext[
@@ -179,8 +179,30 @@ knitr::include_graphics(path = "grammar1.png")
 _source: [The Grammar of Graphics (Wilkinson, 2005)](https://www.springer.com/gp/book/9780387245447)_
 ]
 ---
+
+class: tidy-slide
+.center[
+# ... and the tidyverse
+]
+.bigtext[
+- An <b>opinionated</b> collection of R packages designed for <b>data science</b>.
+]
+  
+--
+
+.bigtext[
+- All share an underlying <b>_design philosophy_</b>, <b>_grammar_</b>, and <b>_data structures_</b>.
+]
+
+--
+
+.bigtext[
+- [dplyr](https://dplyr.tidyverse.org) is a <b>_grammar of data manipulation_</b>:
+ - <b>`mutate()`</b> adds new variables that are functions of existing variables.
+ - <b>`filter()`</b> picks cases based on their values.
+ ]
+---
 layout: true 
-class: hide-logo
 .center[
 # 1. The Polar Area Diagram]
 ---
@@ -298,6 +320,19 @@ Nightingale  %>%
 
 ---
 
+
+.center[
+# Reproducibility Receipt
+]
+```{r}
+Sys.time()
+
+git2r::repository()
+
+sessionInfo()
+```
+
 ```{css, eval = TRUE, echo = FALSE}
 .remark-code{line-height: 1.5; font-size: 80%}
 ```
+

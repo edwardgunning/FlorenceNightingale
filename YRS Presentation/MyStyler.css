@@ -30,3 +30,8 @@
     right:3;
     top:2;
 }
+
+.tidy-slide {
+  background-image: url("tidyverse hex.png");
+  background-size: cover;
+}
