@@ -1,0 +1,32 @@
+.bigtext {
+  font-size: 1.6em;
+}
+.midtext {
+  font-size: 1.3em;
+}
+
+.pull2-left {
+  float: left;
+  width: 65%;
+}
+.pull2-right {
+  float: right;
+  width: 30%;
+}
+
+.cust-img {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    right:3;
+    top:2;
+}
+
+
+.cust-imgcow {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    right:3;
+    top:2;
+}

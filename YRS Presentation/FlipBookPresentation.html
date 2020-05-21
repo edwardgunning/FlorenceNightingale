@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Recreating Nightingale’s Coxcombs</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Gina Reynolds, December 2019" />
+    <script src="libs/header-attrs-2.1/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/uo-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="MyStyler.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: center
+
+
+&lt;br&gt; 
+# #FloViz
+# Recreating Nightingale's Coxcombs 
+## with the `tidyverse`
+
+&lt;br&gt;
+
+## Edward Gunning
+## University of Limerick
+###  27/05/2020
+---
+layout: true
+
+.center[
+# About me
+]
+
+.pull-left[
+.bigtext[
+- Statistics.
+
+- CRT in foundations of Data Science.
+
+- Interested in #DataViz &amp; #rstats.
+]
+]
+---
+---
+count: false
+.pull-right[
+![an image](Painter.png)
+
+]
+---
+count: false
+.pull-right[
+![an image](PNG image.png)
+]
+---
+layout: false
+.center[
+# Motivation
+]
+--
+.pull-left[
+.midtext[
+Data visualisation is all around us, which is great:
+]
+![an image](Financial times.jpg)
+]
+--
+.pull-right[
+&lt;br&gt;
+![an image](Fox News.jpg)
+.midtext[
+...well, most of the time.
+]
+]
+---
+layout: true
+.center[
+# Florence Nightingale
+]
+---
+.center[
+&lt;br&gt;
+
+![an image](HeadshotBBC.png)
+
+_source: [BBC Bitesize Science](https://www.bbc.co.uk/bitesize/topics/zns9nrd/articles/znsct39)_
+]
+---
+count: false
+.center[
+### Data Visualisation Pioneer
+]
+--
+.midtext[
+- Used statistical diagrams to communicate messages for sanitary reform during and after the Crimean war.]
+--
+&lt;br&gt;
+.midtext[
+- "... were more topical and conveyed a call to action - they were prescriptive rather than descriptive." [(Small, 1998)](https://www.york.ac.uk/depts/maths/histstat/small.htm)
+]
+--
+&lt;br&gt;
+.midtext[
+- "...would love the data journalism we have today. But she'd hate some of the ways that data are abused." [(Spiegelhalter, 2019)](https://www.bbc.co.uk/ideas/videos/what-would-florence-nightingale-make-of-big-data/p075lxkt)
+]
+---
+layout: false
+
+
+.center[
+# My Goal
+]
+--
+.pull2-left[
+.midtext[
+Recreate amazing graphics like this]
+![an image](CausesDiag.jpg)
+_source: [A Contribution to the Sanitary History of the British Army (1859)](https://curiosity.lib.harvard.edu/contagion/catalog/36-990101646750203941), pg 17-19._
+]
+--
+.pull2-right[
+.midtext[...with these tools]
+&lt;br&gt;
+&lt;br&gt; 
+
+&lt;img src="ggplot2 logo.png" width="107" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="Tidyverse Logo.png" width="107" style="display: block; margin: auto;" /&gt;
+]
+--
+&lt;br&gt;
+&lt;br&gt; 
+
+.center[
+.midtext[...and a __"Flipbook"__.]]
+
+---
+.center[
+# Why `ggplot2`?
+]
+--
+.midtext[
+- Based on a deep underlying grammar [(Wickham, 2016)](https://ggplot2-book.org/introduction.html)
+]
+--
+.midtext[
+- "...allows us to move beyond named graphics (e.g., the “scatterplot”) and gain insight into the deep structure that underlies statistical graphics." [(Wickham, 2010)](http://vita.had.co.nz/papers/layered-grammar.html)
+]
+--
+
+.midtext[
+&lt;img src="grammar1.png" width="40%" height="30%" style="display: block; margin: auto;" /&gt;
+]
+.center[
+_source: [The Grammar of Graphics (Wilkinson, 2005)](https://www.springer.com/gp/book/9780387245447)_
+]
+---
+layout: true 
+class: hide-logo
+.center[
+# 1. The Polar Area Diagram]
+---
+---
+count:false
+&lt;img src="NotDrawnPolar.png" width="1074" style="display: block; margin: auto;" /&gt;
+.center[_source: [A Contribution to the Sanitary History of the British Army (1859)](https://curiosity.lib.harvard.edu/contagion/catalog/36-990101646750203941), pg 17-19._]
+---
+count:false
+&lt;img src="Drawn On Polar.png" width="1074" style="display: block; margin: auto;" /&gt;
+.center[_source: [A Contribution to the Sanitary History of the British Army (1859)](https://curiosity.lib.harvard.edu/contagion/catalog/36-990101646750203941), pg 17-19._]
+---
+
+layout:false
+
+count: true
+
+
+
+
+
+
+
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+*Nightingale
+```
+]]
+.column[.content[
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+13 1855-04-01   Apr 1855 32252     477     48    57        177.5        17.9
+14 1855-05-01   May 1855 35473     508     49    37        171.8        16.6
+15 1855-06-01   Jun 1855 38863     802    209    31        247.6        64.5
+16 1855-07-01   Jul 1855 42647     382    134    33        107.5        37.7
+17 1855-08-01   Aug 1855 44614     483    164    25        129.9        44.1
+18 1855-09-01   Sep 1855 47751     189    276    20         47.5        69.4
+19 1855-10-01   Oct 1855 46852     128     53    18         32.8        13.6
+20 1855-11-01   Nov 1855 37853     178     33    32         56.4        10.5
+21 1855-12-01   Dec 1855 43217      91     18    28         25.3         5.0
+22 1856-01-01   Jan 1856 44212      42      2    48         11.4         0.5
+23 1856-02-01   Feb 1856 43485      24      0    19          6.6         0.0
+24 1856-03-01   Mar 1856 46140      15      0    35          3.9         0.0
+   Other.rate
+1         7.0
+2         4.6
+3         2.5
+4         9.6
+5        11.9
+6        27.7
+7        50.1
+8        42.8
+9        48.0
+10      120.0
+11      140.1
+12       68.6
+13       21.2
+14       12.5
+15        9.6
+16        9.3
+17        6.7
+18        5.0
+19        4.6
+20       10.1
+21        7.8
+22       13.0
+23        5.2
+24        9.1
+```
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+* filter(Date&lt;='1855-03-01')
+```
+]]
+.column[.content[
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+   Other.rate
+1         7.0
+2         4.6
+3         2.5
+4         9.6
+5        11.9
+6        27.7
+7        50.1
+8        42.8
+9        48.0
+10      120.0
+11      140.1
+12       68.6
+```
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+* mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate))
+```
+]]
+.column[.content[
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+   Other.rate death_rate
+1         7.0        8.4
+2         4.6       10.8
+3         2.5        7.2
+4         9.6      159.6
+5        11.9      340.8
+6        27.7      372.0
+7        50.1      298.8
+8        42.8      499.2
+9        48.0      721.2
+10      120.0     1173.5
+11      140.1      979.2
+12       68.6      561.7
+```
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+* mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",
+*   Date=='1855-03-01' ~ "MARCH 1855",
+*   Date=='1854-04-01' ~ "APRIL 1854",
+*   TRUE ~ mname(Date)))
+```
+]]
+.column[.content[
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+   Other.rate death_rate        Label
+1         7.0        8.4   APRIL 1854
+2         4.6       10.8          MAY
+3         2.5        7.2         JUNE
+4         9.6      159.6         JULY
+5        11.9      340.8       AUGUST
+6        27.7      372.0    SEPTEMBER
+7        50.1      298.8      OCTOBER
+8        42.8      499.2     NOVEMBER
+9        48.0      721.2     DECEMBER
+10      120.0     1173.5 JANUARY 1855
+11      140.1      979.2     FEBRUARY
+12       68.6      561.7   MARCH 1855
+```
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+* ggplot()
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_5_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+* aes(x=month(Date), y=sqrt(death_rate))
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_6_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+* geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_7_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+* coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_8_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+* theme_void()
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_9_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+* theme(plot.margin = margin(t=-100,b=-100,50,r=-100))
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_10_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+* geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_11_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+* geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_12_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+  geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))+  
+* geom_text(aes(label=death_rate,y = sqrt(40)), angle=textangle2[-c(1:3)], data=.%&gt;% filter(!(month(Date)%in%c(4,5,6))), face="italic")
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_13_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+  geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))+  
+  geom_text(aes(label=death_rate,y = sqrt(40)), angle=textangle2[-c(1:3)], data=.%&gt;% filter(!(month(Date)%in%c(4,5,6))), face="italic")+  
+* geom_hline(yintercept = sqrt(12), linetype="dotted")
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_14_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+  geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))+  
+  geom_text(aes(label=death_rate,y = sqrt(40)), angle=textangle2[-c(1:3)], data=.%&gt;% filter(!(month(Date)%in%c(4,5,6))), face="italic")+  
+  geom_hline(yintercept = sqrt(12), linetype="dotted")+  
+* labs(subtitle = "1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:10pt'&gt;TO &lt;/span&gt;MARCH 1855")
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_15_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+  geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))+  
+  geom_text(aes(label=death_rate,y = sqrt(40)), angle=textangle2[-c(1:3)], data=.%&gt;% filter(!(month(Date)%in%c(4,5,6))), face="italic")+  
+  geom_hline(yintercept = sqrt(12), linetype="dotted")+  
+  labs(subtitle = "1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:10pt'&gt;TO &lt;/span&gt;MARCH 1855")+  
+* theme(plot.subtitle = element_markdown(hjust = 0.5, lineheight = 1.5, family="serif",margin = margin(t=65,b =-120), size=16))
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_16_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+  geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))+  
+  geom_text(aes(label=death_rate,y = sqrt(40)), angle=textangle2[-c(1:3)], data=.%&gt;% filter(!(month(Date)%in%c(4,5,6))), face="italic")+  
+  geom_hline(yintercept = sqrt(12), linetype="dotted")+  
+  labs(subtitle = "1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:10pt'&gt;TO &lt;/span&gt;MARCH 1855")+  
+  theme(plot.subtitle = element_markdown(hjust = 0.5, lineheight = 1.5, family="serif",margin = margin(t=65,b =-120), size=16))+  
+* annotate(label="CRIMEA", geom = "text", x=9.5, y=22, fontface="italic")
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_17_output-1.png" width="576" /&gt;
+]]
+---
+class: split-40
+count: false
+ 
+Polar Area Chart
+ 
+.column[.content[
+
+```r
+Nightingale  %&gt;%  
+  filter(Date&lt;='1855-03-01') %&gt;%  
+  mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %&gt;%  
+  mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",  
+    Date=='1855-03-01' ~ "MARCH 1855",  
+    Date=='1854-04-01' ~ "APRIL 1854",  
+    TRUE ~ mname(Date))) %&gt;%  
+  ggplot()+  
+  aes(x=month(Date), y=sqrt(death_rate))+  
+  geom_bar(width=1, stat="identity", fill="slategrey", color="slategrey", alpha=0.4)+  
+  coord_polar(theta="x", start=(6/12)*2*pi, clip = "off")+  
+  theme_void()+  
+  theme(plot.margin = margin(t=-100,b=-100,50,r=-100))+  
+  geom_text(aes(label=Label), position = "identity",angle= text_angle[-c(1:3)], vjust=-1,data=.%&gt;% filter(!(month(Date)%in%c(4:6))))+  
+  geom_text(aes(label=Label, y=3*sqrt(death_rate)), angle=text_angle[1:3], position = "identity",data=.%&gt;% filter(month(Date)%in%c(4,5,6)))+  
+  geom_text(aes(label=death_rate,y = sqrt(40)), angle=textangle2[-c(1:3)], data=.%&gt;% filter(!(month(Date)%in%c(4,5,6))), face="italic")+  
+  geom_hline(yintercept = sqrt(12), linetype="dotted")+  
+  labs(subtitle = "1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:10pt'&gt;TO &lt;/span&gt;MARCH 1855")+  
+  theme(plot.subtitle = element_markdown(hjust = 0.5, lineheight = 1.5, family="serif",margin = margin(t=65,b =-120), size=16))+  
+  annotate(label="CRIMEA", geom = "text", x=9.5, y=22, fontface="italic")+  
+* annotate(label="BULGARIA", geom = "text", x=6.385, y=15.9, fontface="italic", angle=90)
+```
+]]
+.column[.content[
+&lt;img src="FlipBookPresentation_files/figure-html/nighting_auto_18_output-1.png" width="576" /&gt;
+]]
+--
+
+---
+
+
+
+
+
+
+count: false
+
+---
+count: false
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+13 1855-04-01   Apr 1855 32252     477     48    57        177.5        17.9
+14 1855-05-01   May 1855 35473     508     49    37        171.8        16.6
+15 1855-06-01   Jun 1855 38863     802    209    31        247.6        64.5
+16 1855-07-01   Jul 1855 42647     382    134    33        107.5        37.7
+17 1855-08-01   Aug 1855 44614     483    164    25        129.9        44.1
+18 1855-09-01   Sep 1855 47751     189    276    20         47.5        69.4
+19 1855-10-01   Oct 1855 46852     128     53    18         32.8        13.6
+20 1855-11-01   Nov 1855 37853     178     33    32         56.4        10.5
+21 1855-12-01   Dec 1855 43217      91     18    28         25.3         5.0
+22 1856-01-01   Jan 1856 44212      42      2    48         11.4         0.5
+23 1856-02-01   Feb 1856 43485      24      0    19          6.6         0.0
+24 1856-03-01   Mar 1856 46140      15      0    35          3.9         0.0
+   Other.rate
+1         7.0
+2         4.6
+3         2.5
+4         9.6
+5        11.9
+6        27.7
+7        50.1
+8        42.8
+9        48.0
+10      120.0
+11      140.1
+12       68.6
+13       21.2
+14       12.5
+15        9.6
+16        9.3
+17        6.7
+18        5.0
+19        4.6
+20       10.1
+21        7.8
+22       13.0
+23        5.2
+24        9.1
+```
+---
+count: false
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+13 1855-04-01   Apr 1855 32252     477     48    57        177.5        17.9
+14 1855-05-01   May 1855 35473     508     49    37        171.8        16.6
+15 1855-06-01   Jun 1855 38863     802    209    31        247.6        64.5
+16 1855-07-01   Jul 1855 42647     382    134    33        107.5        37.7
+17 1855-08-01   Aug 1855 44614     483    164    25        129.9        44.1
+18 1855-09-01   Sep 1855 47751     189    276    20         47.5        69.4
+19 1855-10-01   Oct 1855 46852     128     53    18         32.8        13.6
+20 1855-11-01   Nov 1855 37853     178     33    32         56.4        10.5
+21 1855-12-01   Dec 1855 43217      91     18    28         25.3         5.0
+22 1856-01-01   Jan 1856 44212      42      2    48         11.4         0.5
+23 1856-02-01   Feb 1856 43485      24      0    19          6.6         0.0
+24 1856-03-01   Mar 1856 46140      15      0    35          3.9         0.0
+   Other.rate
+1         7.0
+2         4.6
+3         2.5
+4         9.6
+5        11.9
+6        27.7
+7        50.1
+8        42.8
+9        48.0
+10      120.0
+11      140.1
+12       68.6
+13       21.2
+14       12.5
+15        9.6
+16        9.3
+17        6.7
+18        5.0
+19        4.6
+20       10.1
+21        7.8
+22       13.0
+23        5.2
+24        9.1
+                                                                 year_num
+1   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+2   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+3   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+4   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+5   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+6   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+7   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+8   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+9   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+10  1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+11  1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+12  1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+13  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+14  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+15  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+16  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+17  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+18  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+19  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+20  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+21  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+22  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+23  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+24  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+```
+---
+count: false
+
+```
+         Date Month Year  Army Disease Wounds Other Disease.rate Wounds.rate
+1  1854-04-01   Apr 1854  8571       1      0     5          1.4         0.0
+2  1854-05-01   May 1854 23333      12      0     9          6.2         0.0
+3  1854-06-01   Jun 1854 28333      11      0     6          4.7         0.0
+4  1854-07-01   Jul 1854 28722     359      0    23        150.0         0.0
+5  1854-08-01   Aug 1854 30246     828      1    30        328.5         0.4
+6  1854-09-01   Sep 1854 30290     788     81    70        312.2        32.1
+7  1854-10-01   Oct 1854 30643     503    132   128        197.0        51.7
+8  1854-11-01   Nov 1854 29736     844    287   106        340.6       115.8
+9  1854-12-01   Dec 1854 32779    1725    114   131        631.5        41.7
+10 1855-01-01   Jan 1855 32393    2761     83   324       1022.8        30.7
+11 1855-02-01   Feb 1855 30919    2120     42   361        822.8        16.3
+12 1855-03-01   Mar 1855 30107    1205     32   172        480.3        12.8
+13 1855-04-01   Apr 1855 32252     477     48    57        177.5        17.9
+14 1855-05-01   May 1855 35473     508     49    37        171.8        16.6
+15 1855-06-01   Jun 1855 38863     802    209    31        247.6        64.5
+16 1855-07-01   Jul 1855 42647     382    134    33        107.5        37.7
+17 1855-08-01   Aug 1855 44614     483    164    25        129.9        44.1
+18 1855-09-01   Sep 1855 47751     189    276    20         47.5        69.4
+19 1855-10-01   Oct 1855 46852     128     53    18         32.8        13.6
+20 1855-11-01   Nov 1855 37853     178     33    32         56.4        10.5
+21 1855-12-01   Dec 1855 43217      91     18    28         25.3         5.0
+22 1856-01-01   Jan 1856 44212      42      2    48         11.4         0.5
+23 1856-02-01   Feb 1856 43485      24      0    19          6.6         0.0
+24 1856-03-01   Mar 1856 46140      15      0    35          3.9         0.0
+   Other.rate
+1         7.0
+2         4.6
+3         2.5
+4         9.6
+5        11.9
+6        27.7
+7        50.1
+8        42.8
+9        48.0
+10      120.0
+11      140.1
+12       68.6
+13       21.2
+14       12.5
+15        9.6
+16        9.3
+17        6.7
+18        5.0
+19        4.6
+20       10.1
+21        7.8
+22       13.0
+23        5.2
+24        9.1
+                                                                 year_num
+1   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+2   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+3   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+4   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+5   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+6   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+7   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+8   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+9   1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+10  1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+11  1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+12  1 . &lt;br&gt; APRIL 1854 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1855
+13  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+14  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+15  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+16  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+17  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+18  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+19  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+20  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+21  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+22  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+23  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+24  2 . &lt;br&gt; APRIL 1855 &lt;span style='font-size:16pt'&gt;TO &lt;/span&gt;MARCH 1856
+             Label death_rate label_pos
+1       APRIL 1854        8.4  10.00000
+2              MAY       10.8  10.00000
+3             JUNE        7.2  10.00000
+4             JULY      159.6  12.63329
+5           AUGUST      340.8  18.46077
+6        SEPTEMBER      372.0  19.28730
+7          OCTOBER      298.8  17.28583
+8         NOVEMBER      499.2  22.34278
+9         DECEMBER      721.2  26.85517
+10    JANUARY 1855     1173.5  34.25639
+11        FEBRUARY      979.2  31.29217
+12      MARCH 1855      561.7  23.70021
+13   APRIL \n 1854      216.6  14.71734
+14             MAY      200.9  14.17392
+15            JUNE      321.7  17.93600
+16            JULY      154.5  12.42980
+17          AUGUST      180.7  13.44247
+18       SEPTEMBER      121.9  11.04083
+19         OCTOBER       51.0  10.00000
+20        NOVEMBER       77.0  10.00000
+21        DECEMBER       38.1  10.00000
+22 JANUARY \n 1856       24.9  10.00000
+23        FEBRUARY       11.8  10.00000
+24           MARCH       13.0  10.00000
+```
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_5_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_6_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_7_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_8_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_9_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_10_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_11_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_12_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_13_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_14_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_15_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_16_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_17_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_18_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_19_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_20_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_21_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+---
+count: false
+&lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_22_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;style type="text/css"&gt;
+.remark-code{line-height: 1.5; font-size: 80%}
+&lt;/style&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:10",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
