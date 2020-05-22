@@ -27,13 +27,13 @@ library(lubridate)
 library(ggtext)
 library(cowplot)
 library(scales)
+library(readxl)
 ```
 
 class: center
-
+background-image: url("ScienceOnAPostcard.png")
 
 <br> 
-# #FloViz
 # Recreating Nightingale's Coxcombs 
 ## with the `tidyverse`
 
@@ -41,7 +41,7 @@ class: center
 
 ## Edward Gunning
 ## University of Limerick
-###  27/05/2020
+### 27/05/2020
 ---
 layout: true
 
@@ -78,7 +78,7 @@ layout: false
 --
 .pull-left[
 .midtext[
-Data visualisation is all around us, which is great:
+<b>Data visualisation</b> is all around us, which is great:
 ]
 ![an image](Financial times.jpg)
 ]
@@ -319,7 +319,9 @@ Nightingale  %>%
 `r chunk_reveal("fullrose", break_type = "auto", display_type="output", split=100)`
 
 ---
-
+.center[#Lines Diagram
+]
+---
 
 .center[
 # Reproducibility Receipt

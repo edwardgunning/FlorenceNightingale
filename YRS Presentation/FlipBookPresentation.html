@@ -20,10 +20,9 @@
 
 
 class: center
-
+background-image: url("ScienceOnAPostcard.png")
 
 &lt;br&gt; 
-# #FloViz
 # Recreating Nightingale's Coxcombs 
 ## with the `tidyverse`
 
@@ -31,7 +30,7 @@ class: center
 
 ## Edward Gunning
 ## University of Limerick
-###  27/05/2020
+### 27/05/2020
 ---
 layout: true
 
@@ -68,7 +67,7 @@ layout: false
 --
 .pull-left[
 .midtext[
-Data visualisation is all around us, which is great:
+&lt;b&gt;Data visualisation&lt;/b&gt; is all around us, which is great:
 ]
 ![an image](Financial times.jpg)
 ]
@@ -1120,7 +1119,9 @@ count: false
 &lt;img src="FlipBookPresentation_files/figure-html/fullrose_auto_22_output-1.png" width="1296" style="display: block; margin: auto;" /&gt;
 
 ---
-
+.center[#Lines Diagram
+]
+---
 
 .center[
 # Reproducibility Receipt
@@ -1131,7 +1132,7 @@ Sys.time()
 ```
 
 ```
-[1] "2020-05-21 22:32:55 IST"
+[1] "2020-05-22 00:53:48 IST"
 ```
 
 ```r
@@ -1141,7 +1142,7 @@ git2r::repository()
 ```
 Local:    master /Users/edwardgunning/Desktop/FlorenceNightingale
 Remote:   master @ origin (https://github.com/edwardgunning/FlorenceNightingale)
-Head:     [c5425dd] 2020-05-21: slides pres
+Head:     [18dccec] 2020-05-21: added tidyverse descrp
 ```
 
 ```r
@@ -1164,26 +1165,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] scales_1.1.0       cowplot_1.0.0      ggtext_0.1.0       lubridate_1.7.8   
- [5] HistData_0.8-6     forcats_0.5.0      stringr_1.4.0      dplyr_0.8.5       
- [9] purrr_0.3.4        readr_1.3.1        tidyr_1.0.2        tibble_3.0.1      
-[13] ggplot2_3.3.0.9000 tidyverse_1.3.0    flipbookr_0.1.0   
+ [1] readxl_1.3.1       scales_1.1.0       cowplot_1.0.0      ggtext_0.1.0      
+ [5] lubridate_1.7.8    HistData_0.8-6     forcats_0.5.0      stringr_1.4.0     
+ [9] dplyr_0.8.5        purrr_0.3.4        readr_1.3.1        tidyr_1.0.2       
+[13] tibble_3.0.1       ggplot2_3.3.0.9000 tidyverse_1.3.0    flipbookr_0.1.0   
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.4.6     lattice_0.20-41  png_0.1-7        assertthat_0.2.1
  [5] digest_0.6.25    R6_2.4.1         cellranger_1.1.0 backports_1.1.6 
  [9] reprex_0.3.0     evaluate_0.14    httr_1.4.1       xaringan_0.16.1 
-[13] pillar_1.4.3     rlang_0.4.5      readxl_1.3.1     rstudioapi_0.11 
-[17] rmarkdown_2.1    labeling_0.3     munsell_0.5.0    gridtext_0.1.1  
-[21] broom_0.5.6      compiler_4.0.0   modelr_0.1.6     xfun_0.13       
-[25] pkgconfig_2.0.3  htmltools_0.4.0  tidyselect_1.0.0 fansi_0.4.1     
-[29] crayon_1.3.4     dbplyr_1.4.3     withr_2.2.0      grid_4.0.0      
-[33] nlme_3.1-147     jsonlite_1.6.1   gtable_0.3.0     lifecycle_0.2.0 
-[37] DBI_1.1.0        git2r_0.26.1     magrittr_1.5     cli_2.0.2       
-[41] stringi_1.4.6    farver_2.0.3     fs_1.4.1         xml2_1.3.1      
-[45] ellipsis_0.3.0   generics_0.0.2   vctrs_0.2.4      tools_4.0.0     
-[49] glue_1.4.0       markdown_1.1     hms_0.5.3        yaml_2.2.1      
-[53] colorspace_1.4-1 rvest_0.3.5      knitr_1.28       haven_2.2.0     
+[13] pillar_1.4.3     rlang_0.4.5      rstudioapi_0.11  rmarkdown_2.1   
+[17] labeling_0.3     munsell_0.5.0    gridtext_0.1.1   broom_0.5.6     
+[21] compiler_4.0.0   modelr_0.1.6     xfun_0.13        pkgconfig_2.0.3 
+[25] htmltools_0.4.0  tidyselect_1.0.0 fansi_0.4.1      crayon_1.3.4    
+[29] dbplyr_1.4.3     withr_2.2.0      grid_4.0.0       nlme_3.1-147    
+[33] jsonlite_1.6.1   gtable_0.3.0     lifecycle_0.2.0  DBI_1.1.0       
+[37] git2r_0.26.1     magrittr_1.5     cli_2.0.2        stringi_1.4.6   
+[41] farver_2.0.3     fs_1.4.1         xml2_1.3.1       ellipsis_0.3.0  
+[45] generics_0.0.2   vctrs_0.2.4      tools_4.0.0      glue_1.4.0      
+[49] markdown_1.1     hms_0.5.3        yaml_2.2.1       colorspace_1.4-1
+[53] rvest_0.3.5      knitr_1.28       haven_2.2.0     
 ```
 
 &lt;style type="text/css"&gt;
