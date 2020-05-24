@@ -21,6 +21,7 @@ output:
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scracth can be time consuming
 knitr::opts_chunk$set(fig.width = 8, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3)
 library(flipbookr)
+library(reshape2)
 library(tidyverse)
 library(HistData)
 library(lubridate)
@@ -319,10 +320,122 @@ Nightingale  %>%
 `r chunk_reveal("fullrose", break_type = "auto", display_type="output", split=100)`
 
 ---
-.center[#Lines Diagram
+.center[# 2. Lines Diagram
+]
+.center[
+![an image](LinesOriginal.png)
+
+source: [Mortality of the British Army (1958)](https://archive.org/details/mortalityofbriti00lond/page/n33/mode/2up)
 ]
 ---
+```{r, echo=F}
+knitr::opts_chunk$set(fig.width = 16, fig.height = 10, fig.align = 'center')
+bounding_box <- data.frame(x=c(4.4,4.4), y=c(-12,0))
+```
+```{r lines, include=F}
+source("linessource.R")
+mort %>% 
+  mutate( 
+  age_group=case_when(age>=20 & age<25 ~ "20-25",
+                      age>=25 & age<30 ~ "25-30",
+                      age>=30 & age<35 ~ "30-35",
+                      age>=35 & age<40 ~ "35-40"),
+  age_group = factor(age_group, levels = c("20-25","25-30", "30-35", "35-40")), # grouped by ages
+  soldier_rate=(d_soldier/n_soldier)*1000) %>%
+  mutate(english_rate=(d_english/n_english)*1000) %>%
+  select(c(1,6,7,8)) %>%
+  pivot_longer(c("soldier_rate", "english_rate"), names_to = "mort_group", values_to = "rate") %>%
+  group_by(age_group, mort_group) %>%
+  summarise(death_rate=mean(rate)) %>%
+  mutate(Label= ifelse(mort_group=="soldier_rate", "English Soldiers.", "Englishmen."))%>%
+  ggplot(aes(x=fct_rev(age_group)))+
+  geom_bar(aes(fill=fct_rev(mort_group), y=death_rate),stat = "identity", position=position_dodge(0.5), width=0.15)+
+  scale_fill_manual(values=c("red", "black"))+
+  coord_flip()+
+  geom_hline(yintercept = 0)+
+  scale_y_continuous(limits = c(-12,30), expand = c(-0.025,1))+
+  theme_light()+
+  scale_x_discrete(expand = expand_scale(mult = c(0.2, 0.4)))+
+  theme(legend.position = "none",
+        axis.text.y = element_text(margin = margin(l = 40, r=-80), size=18, color="black", family="serif"),
+        axis.title = element_blank(),
+        axis.text.x=element_blank(),
+        panel.grid = element_blank(),
+        plot.subtitle = element_markdown(family="Times New Roman" , size=20, hjust = 0.5),
+        plot.title = element_markdown(hjust = 0.5, family="serif", size=22),
+        plot.background = element_rect(fill=alpha("orange",0.15)),
+        panel.background = element_blank(),
+        plot.caption = element_markdown(family="serif", hjust=0.5, size=18),
+        panel.border = element_rect(colour = "black", size=0.8))+
+  geom_text(aes(y=-2.5, label=round(death_rate,1)), nudge_x = -0.15, family="serif", data = . %>% filter(mort_group=="soldier_rate"), size=6)+
+  geom_text(aes(y=-2.5, label=round(death_rate,1)), nudge_x = 0.15, family="serif", data = . %>% filter(mort_group=="english_rate"), size=6)+
+  geom_text(aes(y=25, label=Label), nudge_x = -0.15, family="serif", data = . %>% filter(mort_group=="soldier_rate"), size=6)+
+  geom_text(aes(y=25, label=Label), nudge_x = 0.15, family="serif", data = . %>% filter(mort_group=="english_rate"), size=6)+
+  annotate(geom="text",x = 4.55,y=5, label="DEATHS", family="serif", size=6.5)+
+  annotate(geom="text",x = 4.8,y=-2.55, label="Deaths \n Annually to 1000 \nliving.", size=4.5, family="serif")+
+  annotate(geom="text",x = 4.8,y=-10, label="AGES.", size=6, family="serif")+
+  geom_line(data=bounding_box, aes(x=x,y=y))+
+  geom_hline(yintercept = -5.3)+
+  labs(title="(B.)<br><br><span style='font-size:70pt'><span style='font-family:RoyalGothic'>L</span></span><span style='font-size:40pt'><span style='font-family:LTCGoudyTextW01-Regular'>ines",
+       subtitle = "*Representing the relative Mortality of the* **Army at Home** *and of the* **English Male Population** *at corresponding Ages.*",
+       caption = "N<span style='font-size:10pt'>OTE</span>—The Mortality of the English Male Population at the above ages is taken from English Life Table (1949-1953)")
+```
 
+
+`r chunk_reveal("lines", break_type = "auto", display_type="output")`
+---
+
+
+.pull-left[
+![an image](Mission Accomplished.jpeg)
+]
+.pull-right[
+## Lessons Learned
+.midtext[
+- The <b>layered approach</b> of `ggplot2` allows us to build up to the plot that we want iteratively.
+
+- Allows us to embed Nightingale's level of detail in our graphics.
+]
+]
+.midtext[
+- "Reveal unexpected connections between seemingly different graphics" [(Cox, 1978)]("https://www.jstor.org/stable/2346220?seq=1")
+  - <b>Bar Chart</b> & <b>Polar Area Chart</b>
+]
+---
+.center[
+# Learn from Nightingale
+]
+
+1. <b>Quality Data </b>- Tidy datasets are easy to manipulate, model and visualise.
+  
+--
+
+2. <b>Reproducibility</b> - Circa 160 years later the diagrams are entirely reproducible. 
+
+--
+
+3. <b>Nightingale's annotations</b> - A perfect exemplar for SciComm today.
+
+.center[
+.pull-left[
+![an image](annotate1.png)
+]
+.pull-right[
+![an image](annotate2.png)
+]
+]
+---
+.center[ 
+# Final Remark
+]
+
+From Hadley Wickham's ['A Layered Grammar of Graphics'](http://vita.had.co.nz/papers/layered-grammar.html):
+.center[
+.midtext[
+'<i>The grammar tells us what words make up our graphical "sentences,"</i> but offers no advice on how to write well'
+ ]
+ ]
+---
 .center[
 # Reproducibility Receipt
 ]
@@ -330,7 +443,12 @@ Nightingale  %>%
 Sys.time()
 
 git2r::repository()
-
+```
+---
+.center[
+# Reproducibility Receipt (ctd.)
+]
+```{r}
 sessionInfo()
 ```
 

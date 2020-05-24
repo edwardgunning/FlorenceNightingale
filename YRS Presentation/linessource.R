@@ -1,16 +1,5 @@
 mort<- read_excel("Table EA.xlsx")
 colnames(mort) <- c("age", "n_soldier", "n_english", "d_soldier", "d_english")
+#### some manual aggregation/ manipulation
 
-bounding_box <- data.frame(x=c(4.4,4.4), y=c(-12,0))
-soldier_labels = mort %>% filter(mort_group=="soldier_rate")
-soldier_labels$y=rep(-2.5, nrow(soldier_labels))
-english_labels = mort %>% filter(mort_group=="english_rate")
-english_labels$y=rep(-2.5, nrow(english_labels))
-soldier_labels2 = mort %>% filter(mort_group=="soldier_rate")
-soldier_labels2$label = rep("English Soldiers.", nrow(soldier_labels2))
-soldier_labels2$y=rep(25, nrow(soldier_labels2))
-english_labels = mort %>% filter(mort_group=="english_rate")
-english_labels$y=rep(-2.5, nrow(english_labels))
-english_labels2 = mort %>% filter(mort_group=="english_rate")
-english_labels2$label = rep("Englishmen.", nrow(english_labels2))
-english_labels2$y=rep(25, nrow(english_labels2))
+  
