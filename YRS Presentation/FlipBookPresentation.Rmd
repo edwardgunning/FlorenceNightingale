@@ -389,6 +389,9 @@ mort %>%
 .pull-left[
 ![an image](Mission Accomplished.jpeg)
 ]
+
+--
+
 .pull-right[
 ## Lessons Learned
 .midtext[
@@ -402,19 +405,16 @@ mort %>%
   - <b>Bar Chart</b> & <b>Polar Area Chart</b>
 ]
 ---
+class: midtext
 .center[
-# Learn from Nightingale
+# Learning from Nightingale
 ]
 
-1. <b>Quality Data </b>- Tidy datasets are easy to manipulate, model and visualise.
+1. __Quality Data__ - Tidy datasets are easy to manipulate, model and visualise.
   
---
-
-2. <b>Reproducibility</b> - Circa 160 years later the diagrams are entirely reproducible. 
-
---
-
-3. <b>Nightingale's annotations</b> - A perfect exemplar for SciComm today.
+2. __Reproducibility__ - Circa 160 years later the diagrams are entirely reproducible. 
+  
+3. __Nightingale's annotations__ - A perfect exemplar for SciComm today.
 
 .center[
 .pull-left[
@@ -425,17 +425,50 @@ mort %>%
 ]
 ]
 ---
+
+layout: true
+
 .center[ 
 # Final Remark
 ]
 
-From Hadley Wickham's ['A Layered Grammar of Graphics'](http://vita.had.co.nz/papers/layered-grammar.html):
+From ['A Layered Grammar of Graphics'](http://vita.had.co.nz/papers/layered-grammar.html):
 .center[
 .midtext[
 '<i>The grammar tells us what words make up our graphical "sentences,"</i> but offers no advice on how to write well'
  ]
  ]
+ 
 ---
+---
+count: false
+
+.center[
+![an image](NightinaleBed.jpg)
+
+source: [Mirror UK](https://www.mirror.co.uk/news/uk-news/rare-florence-nightingale-treasures-discovered-21637511)
+]
+---
+count: false
+
+.center[
+![an image](ThanksCare.jpg)
+
+source: [ABC News](https://s.abcnews.com/images/International/WireAP_f56b45ebeda740028f96edf9809aac68_4x5_992.jpg)
+]
+
+---
+
+layout:false
+class: center
+
+![an image](thank you.jpeg)
+
+
+![an image](MediaIcon.png)
+---
+
+count:false
 .center[
 # Reproducibility Receipt
 ]
@@ -445,6 +478,7 @@ Sys.time()
 git2r::repository()
 ```
 ---
+count: false
 .center[
 # Reproducibility Receipt (ctd.)
 ]
