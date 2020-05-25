@@ -32,7 +32,8 @@ library(readxl)
 ```
 
 class: center
-background-image: url("ScienceOnAPostcard.png")
+
+background-image: url("CombinedHex.png")
 
 <br> 
 # Recreating Nightingale's Coxcombs 
@@ -150,12 +151,6 @@ knitr::include_graphics(path = "ggplot2 logo.png")
 knitr::include_graphics(path = "Tidyverse Logo.png")
 ```
 ]
---
-<br>
-<br> 
-
-.center[
-.midtext[...and a __"Flipbook"__.]]
 
 ---
 .center[
@@ -244,7 +239,7 @@ knitr::opts_chunk$set(fig.height = 9)
 
 
 ```{r nighting, include = FALSE}
-Nightingale  %>%
+Nightingale  %>% # HistData package
   filter(Date<='1855-03-01') %>% 
   mutate(death_rate=(Disease.rate + Wounds.rate + Other.rate)) %>%
   mutate(Label=case_when(Date=='1855-01-01' ~ "JANUARY 1855",
@@ -341,8 +336,8 @@ mort %>%
                       age>=30 & age<35 ~ "30-35",
                       age>=35 & age<40 ~ "35-40"),
   age_group = factor(age_group, levels = c("20-25","25-30", "30-35", "35-40")), # grouped by ages
-  soldier_rate=(d_soldier/n_soldier)*1000) %>%
-  mutate(english_rate=(d_english/n_english)*1000) %>%
+  soldier_rate=(d_soldier/n_soldier)*1000,
+  english_rate=(d_english/n_english)*1000) %>%
   select(c(1,6,7,8)) %>%
   pivot_longer(c("soldier_rate", "english_rate"), names_to = "mort_group", values_to = "rate") %>%
   group_by(age_group, mort_group) %>%
@@ -467,7 +462,27 @@ class: center
 
 ![an image](MediaIcon.png)
 ---
+count: false
 
+.center[
+# References
+]
+
+Any sources from the slides are hyperlinked, but here are some resources that I found useful for learning about Nightingale and her work:
+
+- All of [Lynn MacDonald's](https://en.wikipedia.org/wiki/Lynn_McDonald) work.
+
+- Significance Magazine [April isssue](https://rss.onlinelibrary.wiley.com/toc/17409713/2020/17/2) which is dedicated to Nightingale and is free to read until the end of May!
+
+- Prof. Deborah Ashby's recent [online talk](https://drive.google.com/file/d/14cFpGH-bVLLf-M4bfCiq_U4GaGZT978K/view) for RSS Leeds Bradford.
+
+- [Hugh Small](http://www.florence-nightingale-avenging-angel.co.uk/?page_id=2600) on why the Polar Area Chart was such a useful graphic converying Nightingale's message.
+
+- Prof. David Spiegelhalter speaking about Nightingale's statistical work in [this animation](https://www.youtube.com/watch?v=sNppKQh0xPo).
+
+- Prof. Lynn McDonald, Prof. David Spiegelhalter & Prof Anne Marie Rafferty speaking about Nightinale's legacy at the British Library's recent [Florence Nightingale at 200](https://www.youtube.com/watch?v=35o414X_nwc) event.
+
+---
 count:false
 .center[
 # Reproducibility Receipt
