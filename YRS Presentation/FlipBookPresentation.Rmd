@@ -481,6 +481,24 @@ Any sources from the slides are hyperlinked, but here are some resources that I 
 - Prof. Lynn McDonald, Prof. David Spiegelhalter & Prof Anne Marie Rafferty speaking about Nightinale's legacy at the British Library's recent [Florence Nightingale at 200](https://www.youtube.com/watch?v=35o414X_nwc) event.
 
 ---
+
+count: false
+
+.center[
+# References
+]
+
+... and on data visualisation, the following <i>might</i> be helpful:
+
+.midtext[
+- Any of [Hadley Wickham's](http://hadley.nz/) books. If specifically interested in articles, [Tidy Data](https://www.jstatsoft.org/article/view/v059i10) and [A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html) are both nice reads.
+
+- Claus Wilke, as well as being a lifesaver with the `ggtext` package and other contributions to the `ggplot2`, has a book called [Fundamentals of Data Visualization]("https://serialmentor.com/dataviz/aesthetic-mapping.html"). It is available for free online, is written entirely in RMarkdown and it discusses principles of statistical graphics.
+
+- [Evangeline Reynolds'](https://evangelinereynolds.netlify.app/) `flipbookr` package was used to generate these slides with incremental code chunks, see this [cool blog post](https://evangelinereynolds.netlify.app/post/introducing-flipbookr/). [Andrew Heiss](https://www.andrewheiss.com/) also has a great example of the [flipbook presentation](https://datavizm20.classes.andrewheiss.com/content/03-content/#slides) as part of his [data visualisation course](https://datavizm20.classes.andrewheiss.com/) for which all the material is available online.
+]
+
+---
 count:false
 .center[
 # Reproducibility Receipt
