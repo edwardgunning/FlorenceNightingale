@@ -21,12 +21,10 @@ output:
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scracth can be time consuming
 knitr::opts_chunk$set(fig.width = 8, message = FALSE, warning = FALSE, comment = "", cache = FALSE, fig.retina = 3)
 library(flipbookr)
-library(reshape2)
 library(tidyverse)
 library(HistData)
 library(lubridate)
 library(ggtext)
-library(cowplot)
 library(scales)
 library(readxl)
 ```
@@ -416,7 +414,7 @@ class: midtext
 ![an image](annotate1.png)
 ]
 .pull-right[
-![an image](annotate2.png)
+![an image](annotate3.png)
 ]
 ]
 ---
@@ -430,7 +428,7 @@ layout: true
 From ['A Layered Grammar of Graphics'](http://vita.had.co.nz/papers/layered-grammar.html):
 .center[
 .midtext[
-'<i>The grammar tells us what words make up our graphical "sentences,"</i> but offers no advice on how to write well'
+'<i>The grammar tells us what words make up our graphical "sentences"</i>, but offers no advice on how to write well'
  ]
  ]
  
@@ -441,7 +439,7 @@ count: false
 .center[
 ![an image](NightinaleBed.jpg)
 
-source: [Mirror UK](https://www.mirror.co.uk/news/uk-news/rare-florence-nightingale-treasures-discovered-21637511)
+source: [Mirror UK - "Rare Florence Nightingale Treasures Uncovered"](https://www.mirror.co.uk/news/uk-news/rare-florence-nightingale-treasures-discovered-21637511)
 ]
 ---
 count: false
@@ -472,11 +470,11 @@ Any sources from the slides are hyperlinked, but here are some resources that I 
 
 - All of [Lynn MacDonald's](https://en.wikipedia.org/wiki/Lynn_McDonald) work.
 
-- Significance Magazine [April isssue](https://rss.onlinelibrary.wiley.com/toc/17409713/2020/17/2) which is dedicated to Nightingale and is free to read until the end of May!
+- Significance Magazine [April issue](https://rss.onlinelibrary.wiley.com/toc/17409713/2020/17/2) which is dedicated to Nightingale and is free to read until the end of May!
 
 - Prof. Deborah Ashby's recent [online talk](https://drive.google.com/file/d/14cFpGH-bVLLf-M4bfCiq_U4GaGZT978K/view) for RSS Leeds Bradford.
 
-- [Hugh Small](http://www.florence-nightingale-avenging-angel.co.uk/?page_id=2600) on why the Polar Area Chart was such a useful graphic converying Nightingale's message.
+- [Hugh Small](http://www.florence-nightingale-avenging-angel.co.uk/?page_id=2600) on why the Polar Area Chart was such a useful graphic in conveying Nightingale's message.
 
 - Prof. David Spiegelhalter speaking about Nightingale's statistical work in [this animation](https://www.youtube.com/watch?v=sNppKQh0xPo).
 
