@@ -445,9 +445,9 @@ source: [Mirror UK - "Rare Florence Nightingale Treasures Uncovered"](https://ww
 count: false
 
 .center[
-![an image](ThanksCare.jpg)
+![an image](ournation.jpeg)
 
-source: [ABC News](https://s.abcnews.com/images/International/WireAP_f56b45ebeda740028f96edf9809aac68_4x5_992.jpg)
+source: [Telegraph UK](https://www.telegraph.co.uk/news/2020/05/13/coronavirus-positive-good-news-round-up-oldest-survivor-promising/)
 ]
 
 ---
