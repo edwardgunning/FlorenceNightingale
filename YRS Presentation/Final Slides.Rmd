@@ -27,6 +27,7 @@ library(lubridate)
 library(ggtext)
 library(scales)
 library(readxl)
+library(cowplot)
 ```
 
 class: center
@@ -264,7 +265,12 @@ Nightingale  %>% # HistData package
 
 
 ---
-
+layout: true
+count: false
+---
+count: false
+---
+count:false
 ```{r, echo=F}
 knitr::opts_chunk$set(fig.width = 18, fig.height = 13, fig.align = 'center')
 ```
@@ -310,8 +316,22 @@ Nightingale  %>%
 ```
 
 `r chunk_reveal("fullrose", break_type = "auto", display_type="output", split=100)`
+---
+count: false
+```{r, echo=F}
+source("roseplotsource.R")
+source("rc.R")
+rc <- ggdraw(rc) + theme(plot.background = element_rect(fill=alpha("#ECE1C9", 0.3), color=NA))
+rc
+```
 
 ---
+count: false
+```{r, echo=F}
+ggdraw(rc) + draw_line(x = c(0.09,0.3,0.621), y=c(0.494,0.36, 0.483), linetype="dotted", size=1.2)
+```
+---
+layout: false
 .center[# 2. Lines Diagram
 ]
 .center[
