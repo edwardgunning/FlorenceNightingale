@@ -537,6 +537,7 @@ Any sources from the slides are hyperlinked, but here are some resources that I 
 
 - Prof. Lynn McDonald, Prof. David Spiegelhalter & Prof Anne Marie Rafferty speaking about Nightinale's legacy at the British Library's recent [Florence Nightingale at 200](https://www.youtube.com/watch?v=35o414X_nwc) event.
 
+- [The YSS Nightingale 2020 Competition](https://statsyss.wordpress.com/)
 ---
 
 count: false
